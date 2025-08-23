@@ -1,5 +1,5 @@
 # Stage 1: Download and extract HugeGraph Loader from GitHub Release
-FROM debian:bullseye AS hugegraph-loader-stage
+FROM debian:bullseye AS custom-atomspace-builder
 
 WORKDIR /build
 
@@ -28,7 +28,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy extracted HugeGraph Loader from previous stage
-COPY --from=hugegraph-loader-stage /build/apache-hugegraph-loader-incubating-1.5.0 \
+COPY --from=custom-atomspace-builder /build/apache-hugegraph-loader-incubating-1.5.0 \
     /app/hugegraph-loader/apache-hugegraph-loader-incubating-1.5.0
 
 # Copy your app code
